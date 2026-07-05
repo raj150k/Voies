@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>ভয়েস কনভার্ট - GirlicBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container convert-page">
+        <h2>🎤 ভয়েস কনভার্ট</h2>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="convert-card">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>তোমার অডিও/ভয়েস ফাইল সিলেক্ট করো</label>
+                    <input type="file" name="audio" accept="audio/*" required>
+                </div>
+                <button type="submit" class="btn primary full-width">🎀 কনভার্ট করো</button>
+            </form>
+            <p class="info-text">সাপোর্টেড ফরম্যাট: MP3, WAV, OGG, M4A | ম্যাক্স ২০MB</p>
+        </div>
+        
+        <p class="auth-link"><a href="{{ url_for('dashboard') }}">← ড্যাশবোর্ডে ফিরে যাও</a></p>
+    </div>
+</body>
+</html>

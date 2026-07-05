@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>লগইন - GirlicBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container auth-page">
+        <h2>🔑 লগইন</h2>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST">
+            <div class="form-group">
+                <label>ইউজারনেম</label>
+                <input type="text" name="username" required placeholder="তোমার ইউজারনেম">
+            </div>
+            <div class="form-group">
+                <label>পাসওয়ার্ড</label>
+                <input type="password" name="password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn primary full-width">লগইন</button>
+        </form>
+        <p class="auth-link">অ্যাকাউন্ট নেই? <a href="{{ url_for('register') }}">রেজিস্টার করো</a></p>
+        <p class="auth-link"><a href="{{ url_for('index') }}">← হোমপেজে ফিরে যাও</a></p>
+    </div>
+</body>
+</html>

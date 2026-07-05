@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>ড্যাশবোর্ড - GirlicBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container dashboard">
+        <div class="dash-header">
+            <h2>🎯 ড্যাশবোর্ড</h2>
+            <p>স্বাগতম, <strong>{{ session.username }}</strong>!</p>
+        </div>
+        
+        <div class="dash-actions">
+            <a href="{{ url_for('convert') }}" class="btn primary">🎤 নতুন কনভার্ট</a>
+            {% if session.is_admin %}
+                <a href="{{ url_for('admin_panel') }}" class="btn secondary">⚙️ অ্যাডমিন প্যানেল</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}" class="btn danger">🚪 লগআউট</a>
+        </div>
+        
+        <h3>📜 কনভার্সন হিস্টোরি</h3>
+        <div class="history-list">
+            {% if history %}
+                {% for entry in history %}
+                    <div class="history-item">
+                        <span class="time">{{ entry.created_at[:19] }}</span>
+                        <span class="filename">{{ entry.filename }}</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="empty">কোনো কনভার্সন এখনো হয়নি। উপরের বাটনে ক্লিক করে শুরু করো! 🚀</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

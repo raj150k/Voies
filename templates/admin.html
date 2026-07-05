@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>অ্যাডমিন প্যানেল - GirlicBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container admin-page">
+        <h2>⚙️ অ্যাডমিন প্যানেল</h2>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <span class="stat-number">{{ users|length }}</span>
+                <span class="stat-label">ইউজার</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">{{ total_conversions }}</span>
+                <span class="stat-label">মোট কনভার্সন</span>
+            </div>
+        </div>
+        
+        <h3>ইউজার তালিকা</h3>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ইউজারনেম</th>
+                    <th>ইমেইল</th>
+                    <th>তৈরির তারিখ</th>
+                    <th>লাস্ট লগিন</th>
+                    <th>অ্যাডমিন</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email or "—" }}</td>
+                    <td>{{ user.created_at[:19] if user.created_at else "—" }}</td>
+                    <td>{{ user.last_login[:19] if user.last_login else "—" }}</td>
+                    <td>{{ "✅" if user.is_admin else "❌" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <p class="auth-link"><a href="{{ url_for('dashboard') }}">← ড্যাশবোর্ডে ফিরে যাও</a></p>
+    </div>
+</body>
+</html>

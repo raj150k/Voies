@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GirlicBot - AI Voice Changer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎀 GirlicBot</h1>
+            <p class="subtitle">AI-চালিত ভয়েস চেঞ্জার — তোমার ভয়েসকে নারী কণ্ঠে রূপান্তর করো!</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <span class="icon">🎤</span>
+                    <h3>রিয়েল-টাইম কনভার্সন</h3>
+                    <p>তোমার ভয়েস মেসেজ বা অডিও ফাইল আপলোড করো, সাথে সাথে কনভার্ট হয়ে যাবে!</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">🎀</span>
+                    <h3>জাপানি এনিমে ভয়েস</h3>
+                    <p>প্রিমিয়াম কোয়ালিটির জাপানি এনিমে গার্ল ভয়েস মডেল</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">🔐</span>
+                    <h3>সেশন ভিত্তিক সিস্টেম</h3>
+                    <p>লগইন করো, কনভার্ট করো, এবং তোমার হিস্টোরি দেখো</p>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                {% if session.user_id %}
+                    <a href="{{ url_for('dashboard') }}" class="btn primary">ড্যাশবোর্ড →</a>
+                    <a href="{{ url_for('convert') }}" class="btn secondary">ভয়েস কনভার্ট করো 🎤</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn primary">লগইন করো 🔑</a>
+                    <a href="{{ url_for('register') }}" class="btn secondary">নতুন অ্যাকাউন্ট 📝</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
